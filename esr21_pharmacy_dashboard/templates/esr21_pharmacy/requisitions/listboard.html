@@ -1,0 +1,68 @@
+{% extends "edc_dashboard/listboard.html" %}
+{% load admin_urls %}
+{% load edc_base_extras %}
+{% load esr21_pharmacy_extras %}
+
+
+{% block lisboardswitch %}
+    <div container>
+        <button type="button" class="btn btn-primary" data-toggle="button"
+                aria-pressed="false" autocomplete="off">
+            Single toggle
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="button"
+                aria-pressed="false" autocomplete="off">
+            Single toggle
+        </button>
+
+    </div>
+{% endblock lisboardswitch %}
+
+
+{% block listboard_panel %}
+    <a id="oder_drugs" title="Order Drugs"
+       class="btn btn-sm btn-default" role="button"
+       href={{ add_accountability_href }}>
+        <i class="fa fa-plus fa-sm"></i> Update site Stock
+    </a>
+
+    <a id="oder_drugs" title="Order Drugs"
+       class="btn btn-sm btn-default" role="button"
+       href={{ add_requisition_href }}>
+        <i class="fas fa-shopping-basket"></i> Order Drugs
+    </a>
+    <a id="return_to_home" title="go back" class="btn btn-sm btn-default" role="button"
+       href="/pharma">
+        <i class="fa fa-arrow-left fa-sm"></i> Go Back
+    </a>
+{% endblock listboard_panel %}
+
+
+{% block listboard_table_header %}
+    <!-- begin results header -->
+    <th>#</th>
+    <th></th>
+    <th>Requisition Number</th>
+    <th>Site Name</th>
+    <th>Quantity Ordered</th>
+    <th>Date</th>
+    <!-- end results header -->
+{% endblock listboard_table_header %}
+
+{% block listboard_table_button_column %}
+    <td style="white-space: nowrap;">
+        <div class="btn-group ">
+            {% if not result.quantity_issued %}
+                {% issue_button result %}
+            {% endif %}
+        </div>
+    </td>
+{% endblock listboard_table_button_column %}
+
+{% block listboard_table_columns %}
+    <td>{{ result.tracking_identifier }} </td>
+    <td nowrap>{{ result.injection_site }}</td>
+    <td nowrap>{{ result.quantity_order }}</td>
+    <td nowrap>{{ result.object.date|date:"SHORT_DATE_FORMAT" }}</td>
+
+{% endblock listboard_table_columns %}

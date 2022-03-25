@@ -1,0 +1,59 @@
+{% extends "edc_dashboard/listboard.html" %}
+{% load admin_urls %}
+{% load edc_base_extras %}
+{% load esr21_pharmacy_extras %}
+
+{% block listboard_panel %}
+    <a id="oder_drugs" title="Order Drugs"
+       class="btn btn-sm btn-default" role="button"
+       href={{ add_accountability_href }}>
+        <i class="fa fa-plus fa-sm"></i> Update CMS Stock
+    </a>
+    <a id="return_to_home" title="go back" class="btn btn-sm btn-default" role="button"
+       href="/pharma">
+        <i class="fa fa-arrow-left fa-sm"></i> Go Back
+    </a>
+{% endblock listboard_panel %}
+
+
+{% block listboard_table_header %}
+    <!-- begin results header -->
+    <th>#</th>
+    <th></th>
+    <th>Site</th>
+    <th>Lot Number</th>
+    <th>Expiration Date</th>
+    <th>Quantity</th>
+    <th>Status</th>
+    <th>Date</th>
+    <!-- end results header -->
+{% endblock listboard_table_header %}
+
+{% block listboard_table_button_column %}
+    <td style="white-space: nowrap;">
+        {% status_button result %}
+    </td>
+{% endblock listboard_table_button_column %}
+
+{% block listboard_table_columns %}
+    <td>{{ result.injection_site }}</td>
+    <td nowrap>{{ result.lot_number }}</td>
+    <td nowrap>{{ result.object.exp_date|date:"SHORT_DATE_FORMAT"}}</td>
+    <td nowrap>{{ result.issued }}</td>
+    <td nowrap>{{ result.status }}</td>
+    <td nowrap>{{ result.object.date|date:"SHORT_DATE_FORMAT" }}</td>
+
+{% endblock listboard_table_columns %}
+
+
+{% block extra-scripts %}
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("form select").change(function (event) {
+            this.form.submit();
+        })
+    })
+
+</script>
+{% endblock %}

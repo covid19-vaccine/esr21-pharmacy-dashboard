@@ -1,0 +1,17 @@
+<form method="post" action="{% url 'esr21_pharmacy_dashboard:dropdown_menu_form' %}"
+      id="dropdown_menu_form">
+    {% csrf_token %}
+    <!-- Single button -->
+    <div class="btn-group">
+        <select type="button" id="status" name="status" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <option value="">{{ title | capfirst }}</option>
+            {% for status in statuses %}
+                <option value="{{ status }},{{ model_wrapper.lot_number }}">{{ status | capfirst }}</option>
+            {% endfor %}
+        </select>
+
+    </div>
+
+</form>
+
