@@ -1,0 +1,207 @@
+{% extends 'esr21/base.html' %}
+{% url requisitions_listboard_url as requisitions_listboard_url %}
+
+{% block extra-styles %}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        .cards {
+            justify-content: space-around;
+            padding: 1rem 10rem;
+        }
+
+        .sites {
+            margin-left: 10rem;
+            margin-right: -10rem;
+
+        }
+
+        h1 {
+            font-size: 10rem;
+        }
+
+        .sites h1 {
+            font-size: xxx-large;
+        }
+
+        .button {
+            align-self: end;
+            width: 10rem;
+            justify-self: end;
+        }
+
+        .list-group-item {
+            display: flex;
+            flex-flow: row;
+            align-items: self-start;
+            justify-content: space-between;
+        }
+
+        .links-and-button {
+            display: flex;
+            flex-flow: row;
+        }
+
+        .card-group-item {
+            padding: 0 100px;
+        }
+
+        .doc-name {
+            width: 90vw;
+        }
+    </style>
+{% endblock extra-styles %}
+
+{% block main %}
+    <div class="container">
+
+        <div class="row cards justify-content-around w-100">
+            <div class="col-sm-4 ">
+                <a href='requisitions/'>
+                    <div class="panel panel-info">
+                        <div class="panel-heading text-center">
+                            Pharmacy Bank
+                        </div>
+                        <div class="panel-body">
+                            <div class="text-info text-center mt-2">
+                                <h1>{{ inventory }}</h1>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-4 ">
+
+            </div>
+
+            <div class="col-sm-4 ">
+                <a href="accountability/">
+                    <div class="panel panel-info">
+                        <div class="panel-heading text-center">
+                            CMS Bank
+                        </div>
+                        <div class="panel-body">
+                            <div class="text-info text-center mt-2">
+                                <h1>{{ cms_inventory }}</h1>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="row card-group-item">
+            <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    Sites Banks
+                </div>
+                <div class="panel-body row sites">
+                    <div class="col-md-2 center">
+                        <div class="card border-success mx-sm-1 p-3">
+                            <div class="card border-success shadow text-success p-3 my-card"><span
+                                    aria-hidden="true"></span></div>
+                            <div class="text-success text-center mt-3"><h4>Gaborone</h4>
+                            </div>
+                            <div class="text-success text-center mt-2">
+                                <h1>{{ gabz_issued }}</h1></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 center">
+                        <div class="card border-success mx-sm-1 p-3">
+                            <div class="card border-success shadow text-success p-3 my-card"><span
+                                    aria-hidden="true"></span></div>
+                            <div class="text-success text-center mt-3"><h4>
+                                Francistown</h4></div>
+                            <div class="text-success text-center mt-2">
+                                <h1>{{ ftown_issued }}</h1></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 center">
+                        <div class="card border-success mx-sm-1 p-3">
+                            <div class="card border-success shadow text-success p-3 my-card"><span
+                                    aria-hidden="true"></span></div>
+                            <div class="text-success text-center mt-3"><h4>Serowe</h4>
+                            </div>
+                            <div class="text-success text-center mt-2">
+                                <h1>{{ serowe_issued }}</h1></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 center">
+                        <div class="card border-success mx-sm-1 p-3">
+                            <div class="card border-success shadow text-success p-3 my-card"><span
+                                    aria-hidden="true"></span></div>
+                            <div class="text-success text-center mt-3"><h4>Phikwe</h4>
+                            </div>
+                            <div class="text-success text-center mt-2">
+                                <h1>{{ phikwe_issued }}</h1></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 center">
+                        <div class="card border-success mx-sm-1 p-3">
+                            <div class="card border-success shadow text-success p-3 my-card"><span
+                                    aria-hidden="true"></span></div>
+                            <div class="text-success text-center mt-3"><h4>Maun</h4></div>
+                            <div class="text-success text-center mt-2">
+                                <h1>{{ maun_issued }}</h1></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row w-100">
+        <aside class="col-6">
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header"><h4 class="title">Links </h4></header>
+                    <div class="filter-content">
+                        <div class="list-group list-group-flush">
+                            <div class="links-and-button">
+                                <a class="list-group-item doc-name"
+                                   href="download/drug_disposal_form/">
+                                    Drug Disposal form
+                                </a>
+                                <a class="list-group-item"
+                                   href={{ add_drug_disposal_upload_url }}>
+                                    <i class="fa fa-upload"></i>
+                                </a>
+                            </div>
+                            <div class="links-and-button">
+                                <a class="list-group-item doc-name"
+                                   href="download/chain_of_custody_form/">
+                                    Chain of custody
+                                </a>
+                                <a class="list-group-item"
+                                   href={{ add_chain_of_custody_upload_url }}>
+                                    <i class="fa fa-upload"></i>
+                                </a>
+
+                            </div>
+                            <div class="links-and-button">
+                                <a class="list-group-item doc-name"
+                                   href="download/temp_excursion_report/">
+                                    Incident and Temperature Excursion Report
+                                </a>
+                                <a class="list-group-item"
+                                   href={{ add_incident_report_upload_url }}>
+                                    <i class="fa fa-upload"></i>
+                                </a>
+                            </div>
+                            <div>
+                            </div>  <!-- list-group .// -->
+                        </div>
+                </article> <!-- card-group-item.// -->
+            </div> <!-- card.// -->
+        </aside> <!-- col.// -->
+    </div>
+
+{% endblock main %}
