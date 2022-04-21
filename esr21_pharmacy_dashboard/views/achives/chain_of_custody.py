@@ -3,6 +3,7 @@ import mimetypes
 import os
 from wsgiref.util import FileWrapper
 
+from django.conf import settings
 from django.http.response import HttpResponse
 from django.utils.encoding import smart_str
 
@@ -11,11 +12,11 @@ def ChainOfCustody(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    filename = 'chain_of_custody_of_study_product.pdf'
 
-    filename = 'Chain of Custody of Study Product.pdf'
+    media_dir = settings.MEDIA_ROOT
 
-    filepath = BASE_DIR + '/Files/' + filename
+    filepath = media_dir + '/document/' + filename
 
     buffer.seek(0)
 

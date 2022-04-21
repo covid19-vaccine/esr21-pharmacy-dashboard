@@ -3,6 +3,7 @@ import mimetypes
 import os
 from wsgiref.util import FileWrapper
 
+from django.conf import settings
 from django.http.response import HttpResponse
 from django.utils.encoding import smart_str
 
@@ -11,11 +12,11 @@ def DrugDisposal(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
     filename = 'drug_disposal_form.pdf'
 
-    filepath = BASE_DIR + '/Files/' + filename
+    media_dir = settings.MEDIA_ROOT
+
+    filepath = media_dir + '/document/' + filename
 
     buffer.seek(0)
 

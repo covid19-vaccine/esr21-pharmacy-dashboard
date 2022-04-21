@@ -3,6 +3,7 @@ import mimetypes
 import os
 from wsgiref.util import FileWrapper
 
+from django.conf import settings
 from django.http.response import HttpResponse
 from django.utils.encoding import smart_str
 
@@ -10,12 +11,11 @@ from django.utils.encoding import smart_str
 def DailyTempLog(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
+    filename = 'az_study_drug_daily_temperature_log.pdf'
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    media_dir = settings.MEDIA_ROOT
 
-    filename = 'AZ study drug daily temperature log.pdf'
-
-    filepath = BASE_DIR + '/Files/' + filename
+    filepath = media_dir + '/document/' + filename
 
     buffer.seek(0)
 

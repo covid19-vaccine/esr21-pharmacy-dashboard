@@ -1,2 +1,3 @@
 include AUTHORS CHANGES README.md LICENCE
 recursive-include esr21_pharmacy_dashboard/templates *
+recursive-include esr21_pharmacy_dashboard/media *
