@@ -26,11 +26,7 @@
         <i class="fa fa-plus fa-sm"></i> Update site Stock
     </a>
 
-    <a id="oder_drugs" title="Order Drugs"
-       class="btn btn-sm btn-default" role="button"
-       href={{ add_requisition_href }}>
-        <i class="fas fa-shopping-basket"></i> Order Drugs
-    </a>
+    {% order_button requisition%}
     <a id="return_to_home" title="go back" class="btn btn-sm btn-default" role="button"
        href="/pharma">
         <i class="fa fa-arrow-left fa-sm"></i> Go Back
