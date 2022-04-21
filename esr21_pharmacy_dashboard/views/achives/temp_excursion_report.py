@@ -3,6 +3,7 @@ import mimetypes
 import os
 from wsgiref.util import FileWrapper
 
+from django.conf import settings
 from django.http.response import HttpResponse
 from django.utils.encoding import smart_str
 
@@ -11,11 +12,14 @@ def TempExcursionReport(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    filename = 'az_study_drug_incident_and_temperature_excursion_report.pdf'
 
-    filename = 'AZ study drug Incident and temperature excursion report.pdf'
+    BASE_DIR = os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-    filepath = BASE_DIR + '/Files/' + filename
+    media_dir = settings.MEDIA_URL
+
+    filepath = BASE_DIR + media_dir + 'document/' + filename
 
     buffer.seek(0)
 
