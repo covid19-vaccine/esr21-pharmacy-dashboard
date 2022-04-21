@@ -13,7 +13,7 @@ def ChainOfCustody(request):
 
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    filename = 'drug_disposal_form.pdf'
+    filename = 'Chain of Custody of Study Product.pdf'
 
     filepath = BASE_DIR + '/Files/' + filename
 

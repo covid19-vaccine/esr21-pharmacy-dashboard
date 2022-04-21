@@ -1,5 +1,7 @@
 {% extends 'esr21/base.html' %}
 {% url requisitions_listboard_url as requisitions_listboard_url %}
+{% load esr21_pharmacy_extras %}
+
 
 {% block extra-styles %}
     <link rel="stylesheet"
@@ -99,58 +101,30 @@
         <div class="row card-group-item">
             <div class="panel panel-info">
                 <div class="panel-heading text-center">
-                    Sites Banks
+                    Active Vials Per Site
                 </div>
                 <div class="panel-body row sites">
-                    <div class="col-md-2 center">
-                        <div class="card border-success mx-sm-1 p-3">
-                            <div class="card border-success shadow text-success p-3 my-card"><span
-                                    aria-hidden="true"></span></div>
-                            <div class="text-success text-center mt-3"><h4>Gaborone</h4>
+                    {% for site in all_sites_active_stats %}
+                        <div class="col-md-2 center">
+                            <div class="card border-success mx-sm-1 p-3">
+                                <div class="card border-success shadow text-success p-3 my-card"><span
+                                        aria-hidden="true"></span></div>
+                                <div class="text-success text-center mt-3">
+                                    <h4>{{ site.site_name }}</h4>
+                                </div>
+                                <div class="text-success text-center mt-2">
+                                    {% if site.total != "None" %}
+                                        <h1>{{ site.total }}</h1>
+                                    {% else %}
+                                        <h1>0</h1>
+                                    {% endif %}
+                                </div>
+                                <div class="text-success text-center mt-2">
+                                    <span>Lot Number: {{ site.lot_number }}</span>
+                                </div>
                             </div>
-                            <div class="text-success text-center mt-2">
-                                <h1>{{ gabz_issued }}</h1></div>
                         </div>
-                    </div>
-                    <div class="col-md-2 center">
-                        <div class="card border-success mx-sm-1 p-3">
-                            <div class="card border-success shadow text-success p-3 my-card"><span
-                                    aria-hidden="true"></span></div>
-                            <div class="text-success text-center mt-3"><h4>
-                                Francistown</h4></div>
-                            <div class="text-success text-center mt-2">
-                                <h1>{{ ftown_issued }}</h1></div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 center">
-                        <div class="card border-success mx-sm-1 p-3">
-                            <div class="card border-success shadow text-success p-3 my-card"><span
-                                    aria-hidden="true"></span></div>
-                            <div class="text-success text-center mt-3"><h4>Serowe</h4>
-                            </div>
-                            <div class="text-success text-center mt-2">
-                                <h1>{{ serowe_issued }}</h1></div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 center">
-                        <div class="card border-success mx-sm-1 p-3">
-                            <div class="card border-success shadow text-success p-3 my-card"><span
-                                    aria-hidden="true"></span></div>
-                            <div class="text-success text-center mt-3"><h4>Phikwe</h4>
-                            </div>
-                            <div class="text-success text-center mt-2">
-                                <h1>{{ phikwe_issued }}</h1></div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 center">
-                        <div class="card border-success mx-sm-1 p-3">
-                            <div class="card border-success shadow text-success p-3 my-card"><span
-                                    aria-hidden="true"></span></div>
-                            <div class="text-success text-center mt-3"><h4>Maun</h4></div>
-                            <div class="text-success text-center mt-2">
-                                <h1>{{ maun_issued }}</h1></div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -193,6 +167,16 @@
                                 </a>
                                 <a class="list-group-item"
                                    href={{ add_incident_report_upload_url }}>
+                                    <i class="fa fa-upload"></i>
+                                </a>
+                            </div>
+                            <div class="links-and-button">
+                                <a class="list-group-item doc-name"
+                                   href="download/dail_temp_log/">
+                                    daily temperature log
+                                </a>
+                                <a class="list-group-item"
+                                   href={{ add_daily_temp_log_upload_url }}>
                                     <i class="fa fa-upload"></i>
                                 </a>
                             </div>

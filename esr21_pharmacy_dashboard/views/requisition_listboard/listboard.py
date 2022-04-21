@@ -33,10 +33,14 @@ class RequisitionsViews(NavbarViewMixin, EdcBaseViewMixin,
 
         accountability_model_wrapper = AccountabilityModelWrapper(
             model_obj=model_obj
-            )
+        )
+        drug_req_obj = self.model_cls()
+        wrapped_drug_req_obj = self.model_wrapper_cls(
+            model_obj=drug_req_obj
+        )
 
         context.update(
             add_accountability_href=accountability_model_wrapper.href,
-            add_requisition_href=self.model_cls().get_absolute_url()
-            )
+            requisition=wrapped_drug_req_obj
+        )
         return context

@@ -7,13 +7,13 @@ from django.http.response import HttpResponse
 from django.utils.encoding import smart_str
 
 
-def TempExcursionReport(request):
+def DailyTempLog(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
 
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    filename = 'AZ study drug Incident and temperature excursion report.pdf'
+    filename = 'AZ study drug daily temperature log.pdf'
 
     filepath = BASE_DIR + '/Files/' + filename
 
