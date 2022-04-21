@@ -11,19 +11,14 @@ from django.utils.encoding import smart_str
 def ChainOfCustody(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
-    BASE_DIR = os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-    media_dir = settings.MEDIA_URL
 
     filename = 'chain_of_custody_of_study_product.pdf'
 
-    filepath = BASE_DIR + media_dir + 'document/' + filename
+    media_dir = settings.MEDIA_ROOT
+
+    filepath = media_dir + '/document/' + filename
 
     buffer.seek(0)
-
-    import pdb;
-    pdb.set_trace()
 
     file_wrapper = FileWrapper(open(filepath, 'rb'))
     file_mimetype = mimetypes.guess_type(filepath)

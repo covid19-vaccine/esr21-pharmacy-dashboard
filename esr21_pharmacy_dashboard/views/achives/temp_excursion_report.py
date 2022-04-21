@@ -14,12 +14,9 @@ def TempExcursionReport(request):
 
     filename = 'az_study_drug_incident_and_temperature_excursion_report.pdf'
 
-    BASE_DIR = os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+    media_dir = settings.MEDIA_ROOT
 
-    media_dir = settings.MEDIA_URL
-
-    filepath = BASE_DIR + media_dir + 'document/' + filename
+    filepath = media_dir + '/document/' + filename
 
     buffer.seek(0)
 

@@ -11,15 +11,11 @@ from django.utils.encoding import smart_str
 def DailyTempLog(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
-
-    BASE_DIR = os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-    media_dir = settings.MEDIA_URL
-
     filename = 'az_study_drug_daily_temperature_log.pdf'
 
-    filepath = BASE_DIR + media_dir + 'document/' + filename
+    media_dir = settings.MEDIA_ROOT
+
+    filepath = media_dir + '/document/' + filename
 
     buffer.seek(0)
 
